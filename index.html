@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-　　  <style>
+    <title>liff test</title>
+    <style>
       html {
         font-family: "Yu Gothic", YuGothic, Verdana, 'Hiragino Kaku Gothic ProN','Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro W3', 'メイリオ', Meiryo, sans-serif;
         line-height: 1.7;
@@ -69,32 +70,19 @@
         height: 64px;
       }
     </style>
-    
-    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
   </head>
   <body>
     <img src="purple_sky.JPG">
     <h1>LIFFテストページ</h1>
+    <img id="profile_img" class="profile" src=""/>
+    <h2 id="profile_name"></h2>
     <p>LIFFの作成を色々と試すためのページです。</p>
     <button class="btn" id="shareFriends">share to friends</button><br>
     <button class="btn" id="closeWindowButton">close</button>
   </body>
    
   <script>
-    const liffId = "1654450888-XA1bdWMv"
-    const Name = document.getElementById('profile_name');
-    const Img = document.getElementById("profile_img");
- 
-    liff.init({liffId}).then(() => {
-      if (liff.isLoggedIn()) {
-      }
-      else{
-        liff.login();
-      }
-    })
-  </script>
-  
-<script>
     const liffId = "1654450888-XA1bdWMv"
     const Name = document.getElementById('profile_name');
     const Img = document.getElementById("profile_img");
@@ -116,8 +104,7 @@
         liff.login();
       }
     })
-  
-
+     
     function closeWindow() {
       if (!liff.isInClient()) {
           sendAlertIfNotInClient();
@@ -127,23 +114,6 @@
     }
      
     function shareFriends() {
-      if (liff.isApiAvailable('shareTargetPicker')){
-        liff.shareTargetPicker(
-          [{
-            type: 'text',
-            text: 'https://liff.line.me/1654391458-ZXkyBBy8'
-          }]
-        ).then(function() {
-        }).catch(function(error) {
-          window.alert('シェア機能でエラーが起こりました：'+ error);
-        });
-      };
-    }
-     
-    document.querySelector("#shareFriends").addEventListener("click", shareFriends)
-    document.getElementById('closeWindowButton').addEventListener('click', closeWindow)
-   
-  function shareFriends() {
       if (liff.isApiAvailable('shareTargetPicker')){
         liff.shareTargetPicker(
           [{
@@ -245,8 +215,10 @@
         });
       };
     }
-  
+     
+    document.querySelector("#shareFriends").addEventListener("click", shareFriends)
+    document.getElementById('closeWindowButton').addEventListener('click', closeWindow)
+     
   </script>
-  
-  
+   
 </html>
