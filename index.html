@@ -76,6 +76,7 @@
     <img src="purple_sky.JPG">
     <h1>LIFFテストページ</h1>
     <p>LIFFの作成を色々と試すためのページです。</p>
+    <button class="btn" id="shareFriends">share to friends</button><br>
     <button class="btn" id="closeWindowButton">close</button>
   </body>
    
@@ -116,16 +117,135 @@
       }
     })
   
+
     function closeWindow() {
-    if (!liff.isInClient()) {
-        sendAlertIfNotInClient();
-    } else {
-        liff.closeWindow();
+      if (!liff.isInClient()) {
+          sendAlertIfNotInClient();
+      } else {
+          liff.closeWindow();
+      }
     }
-  }
+     
+    function shareFriends() {
+      if (liff.isApiAvailable('shareTargetPicker')){
+        liff.shareTargetPicker(
+          [{
+            type: 'text',
+            text: 'https://liff.line.me/1654391458-ZXkyBBy8'
+          }]
+        ).then(function() {
+        }).catch(function(error) {
+          window.alert('シェア機能でエラーが起こりました：'+ error);
+        });
+      };
+    }
+     
+    document.querySelector("#shareFriends").addEventListener("click", shareFriends)
+    document.getElementById('closeWindowButton').addEventListener('click', closeWindow)
    
-  document.getElementById('closeWindowButton').addEventListener('click', closeWindow)
-   
+  function shareFriends() {
+      if (liff.isApiAvailable('shareTargetPicker')){
+        liff.shareTargetPicker(
+          [{
+            "type": "flex",
+            "altText": "LIFFがシェアされました。",
+            "contents": {
+            "type": "bubble",
+            "body": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "LIFF test",
+                  "weight": "bold",
+                  "size": "xl"
+                },
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "margin": "lg",
+                  "spacing": "sm",
+                  "contents": [
+                    {
+                      "type": "box",
+                      "layout": "baseline",
+                      "spacing": "sm",
+                      "contents": [
+                        {
+                          "type": "text",
+                          "text": "作成者",
+                          "color": "#aaaaaa",
+                          "size": "sm",
+                          "flex": 1
+                        },
+                        {
+                          "type": "text",
+                          "text": "みなこ さたけ",
+                          "wrap": true,
+                          "color": "#666666",
+                          "size": "sm",
+                          "flex": 5
+                        }
+                      ]
+                    },
+                    {
+                      "type": "box",
+                      "layout": "baseline",
+                      "spacing": "sm",
+                      "contents": [
+                        {
+                          "type": "text",
+                          "text": "目的",
+                          "color": "#aaaaaa",
+                          "size": "sm",
+                          "flex": 1
+                        },
+                        {
+                          "type": "text",
+                          "text": "LIFFをテストしてみること",
+                          "wrap": true,
+                          "color": "#666666",
+                          "size": "sm",
+                          "flex": 5
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "footer": {
+              "type": "box",
+              "layout": "vertical",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "style": "link",
+                  "height": "sm",
+                  "action": {
+                    "type": "uri",
+                    "label": "開く",
+                    "uri": "https://liff.line.me/1654391458-ZXkyBBy8"
+                  }
+                },
+                {
+                  "type": "spacer",
+                  "size": "sm"
+                }
+              ],
+              "flex": 0
+            }
+          }
+          }]
+        ).then(function() {
+        }).catch(function(error) {
+          window.alert('シェア機能でエラーが起こりました：'+ error);
+        });
+      };
+    }
+  
   </script>
   
   
