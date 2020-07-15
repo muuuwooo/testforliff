@@ -115,6 +115,18 @@
         liff.login();
       }
     })
+  
+    function closeWindow() {
+    if (!liff.isInClient()) {
+        sendAlertIfNotInClient();
+    } else {
+        liff.closeWindow();
+    }
+  }
+   
+  document.getElementById('closeWindowButton').addEventListener('click', closeWindow)
+   
   </script>
+  
   
 </html>
