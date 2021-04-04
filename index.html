@@ -77,7 +77,7 @@
     <h1>LIFFテストページ</h1>
     <img id="profile_img" class="profile" src=""/>
     <h2 id="profile_name"></h2><br>
-    <h2 id="profile_userid"></h2><br>
+    <h2 id="profile_id"></h2><br>
     <p>LIFFの作成を色々と試すためのページです。</p>
     <button class="btn" id="shareFriends">share to friends</button><br>
     <button class="btn" id="closeWindowButton">close</button>
@@ -85,7 +85,7 @@
    
   <script>
     const liffId = "1654450888-XA1bdWMv"
-    const userid = document.getElementById('profile_id');
+    const userId = document.getElementById('profile_id');
     const Name = document.getElementById('profile_name');
     const Img = document.getElementById("profile_img");
  
@@ -93,7 +93,7 @@
       if (liff.isLoggedIn()) {
         liff.getProfile()
           .then(profile => {
-            const userid = profile.userid;
+            const userId = profile.userId;
             const name = profile.displayName;
             const pic = profile.pictureUrl;
             Name.innerHTML = name;
